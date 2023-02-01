@@ -7,3 +7,6 @@ Took much inspiration from the default keymap.c and Thomas Baart's version with 
 
 To Do:
 Remove unused mousekeys
+Consider alternative layout like Hands Down
+Emoji shorcuts?!
+Linger keys? Slight hold on Q = "qu"

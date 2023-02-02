@@ -4,4 +4,12 @@ ENCODER_ENABLE = yes       # Enables the use of one or more encoders
 RGBLIGHT_ENABLE = yes      # Enable keyboard RGB underglow
 LEADER_ENABLE = no        # Enable the Leader Key feature
 MOUSEKEY_ENABLE = no	# Enable the Mousekeys feature
-COMBO_ENABLE = yes		# Enable the Combos feature. IE, C+V = CTL + V for paste, etc. 
+COMBO_ENABLE = no		# Enable the Combos feature. IE, f+c = CTL + V for paste, etc. 
+
+# Sample Combos for Hands Down Gold
+# x+f = Undo 
+# x+l = Cut
+# f+l = Copy
+# l+c = Paste
+# f+c = Paste Match
+# x+c = Select ALL

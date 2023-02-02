@@ -5,7 +5,7 @@ RGBLIGHT_ENABLE = yes      # Enable keyboard RGB underglow
 LEADER_ENABLE = no        # Enable the Leader Key feature
 MOUSEKEY_ENABLE = yes	# Enable the Mousekeys feature
 COMBO_ENABLE = yes		# Enable the Combos feature. IE, f+c = CTL + V for paste, etc. 
-TAP_DANCE_ENABLE = yes # Enable the Tap Dance feature. Single tap = keycode, double-tap = difference keycode, etc.
+TAP_DANCE_ENABLE = no # Enable the Tap Dance feature. Single tap = keycode, double-tap = difference keycode, etc.
 
 VPATH += keyboards/gboards
 

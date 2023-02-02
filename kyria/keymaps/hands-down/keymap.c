@@ -27,7 +27,7 @@ enum layers {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-[HANDS_DOWN] = LAYOUT(KC_ESC, TD_JZ, KC_G, KC_M, KC_P, KC_V, KC_SCLN, KC_QUOT, KC_SLSH, KC_QUOT, KC_QUOT, KC_PIPE, KC_BSPC, KC_R, KC_S, KC_N, KC_D, KC_B, KC_COMM, KC_A, KC_E, KC_I, KC_H, KC_QUOT, KC_Z, KC_X, KC_F, KC_L, KC_C, KC_W, KC_LSFT, TG(0), TG(4), KC_LSFT, KC_MINS, KC_U, KC_O, KC_Y, TD_KQ, KC_Q, KC_LGUI, LT(4,KC_DEL), LT(3,KC_BSPC), LT(1,KC_T), LT(2,KC_ENT), LT(1,KC_ENT), LT(2,KC_SPC), LT(3,KC_TAB), LT(4,KC_BSPC), KC_APP),
+[HANDS_DOWN] = LAYOUT(KC_ESC, KC_J, KC_G, KC_M, KC_P, KC_V, KC_SCLN, KC_QUOT, KC_SLSH, KC_QUOT, KC_QUOT, KC_PIPE, KC_BSPC, KC_R, KC_S, KC_N, KC_D, KC_B, KC_COMM, KC_A, KC_E, KC_I, KC_H, KC_QUOT, KC_Z, KC_X, KC_F, KC_L, KC_C, KC_W, KC_LSFT, TG(0), TG(4), KC_LSFT, KC_MINS, KC_U, KC_O, KC_Y, KC_K, KC_Q, KC_LGUI, LT(4,KC_DEL), LT(3,KC_BSPC), LT(1,KC_T), LT(2,KC_ENT), LT(1,KC_ENT), LT(2,KC_SPC), LT(3,KC_TAB), LT(4,KC_BSPC), KC_APP),
 
 [LOWER] = LAYOUT(KC_GRV, KC_EXLM, KC_AT, KC_LCBR, KC_RCBR, KC_PIPE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_BSLS, KC_TILD, KC_HASH, KC_DLR, KC_LPRN, KC_RPRN, KC_GRV, KC_PLUS, KC_MINS, KC_SLSH, KC_ASTR, KC_PERC, KC_QUOT, KC_PIPE, KC_PERC, KC_CIRC, KC_LT, KC_GT, KC_RBRC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_AMPR, KC_EQL, KC_LT, KC_GT, KC_SLSH, KC_MINS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
 
@@ -44,37 +44,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, LOWER, RAISE, ADJUST);
 }
-
-// Tap Dance declarations
-enum {
-    TD_JZ,
-    TD_KQ,
-};
-
-// Tap Dance definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for J, twice for Z
-    [TD_JZ] = ACTION_TAP_DANCE_DOUBLE(KC_J, KC_Z),
-};
-
-// Add tap dance item to your keymap in place of a keycode
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    // ...
-    TD(TD_JZ)
-    // ...
-};
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for K, twice for Q
-    [TD_KQ] = ACTION_TAP_DANCE_DOUBLE(KC_K, KC_Q),
-};
-
-// Add tap dance item to your keymap in place of a keycode
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    // ...
-    TD(TD_KQ)
-    // ...
-};
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_180; }

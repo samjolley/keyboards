@@ -1,3 +1,5 @@
+VPATH += keyboards/gboards
+
 OLED_ENABLE = yes
 OLED_DRIVER = SSD1306   # Enables the use of OLED displays
 ENCODER_ENABLE = yes       # Enables the use of one or more encoders
@@ -6,8 +8,6 @@ LEADER_ENABLE = no        # Enable the Leader Key feature
 MOUSEKEY_ENABLE = yes	# Enable the Mousekeys feature
 COMBO_ENABLE = yes		# Enable the Combos feature. IE, f+c = CTL + V for paste, etc. 
 TAP_DANCE_ENABLE = no # Enable the Tap Dance feature. Single tap = keycode, double-tap = difference keycode, etc.
-
-VPATH += keyboards/gboards
 
 # Sample Combos for Hands Down Gold
 # x+f = Undo 

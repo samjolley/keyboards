@@ -25,15 +25,6 @@ enum layers {
     ADJUST,
 };
 
-// Aliases for readability
-#define HANDS_DOWN  DF(HANDS_DOWN)
-#define QWERTY      DF(QWERTY)
-
-#define LOWER      LT(LOWER)
-#define RAISE      LT(RAISE)
-#define FUN        LT(FUN)
-#define ADJUST     LT(ADJUST)
-
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -53,10 +44,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [HANDS_DOWN] = LAYOUT(
-    KC_ESC          , KC_J  , KC_G   ,  KC_M    ,  KC_P            ,  KC_V               ,                                                                                      KC_SCLN           , KC_PDOT , KC_SLSH , KC_QUOT ,   KC_EXLM , KC_BSLS, 
-    LCTL_T(KC_BSPC) , KC_R  , KC_S   ,  KC_N    ,  KC_D            ,  KC_B               ,                                                                                      KC_COMM           , KC_A    , KC_E    , KC_I    ,   KC_H    , KC_QUOT, 
-    KC_LSFT         , KC_X  , KC_F   ,  KC_L    ,  KC_C            ,  KC_W               ,  KC_LSFT        ,  DF(HANDS_DOWN),            DF(QWERTY)        , KC_LSFT          , KC_MINS           , KC_U    , KC_O    , KC_Y    ,   KC_K    , KC_MINS, 
-                                        KC_LGUI ,  LT(FUN,KC_DEL)  ,  LT(ADJUST,KC_BSPC) ,  LT(LOWER,KC_T) ,  LT(RAISE,KC_ENT),          LT(LOWER,KC_ENT)  , LT(RAISE,KC_SPC) , LT(ADJUST,KC_TAB) , KC_BSPC , KC_APP) ,
+    KC_ESC          , KC_J  , KC_G   ,  KC_M    , KC_P           ,  KC_V               ,                                                                                     KC_SCLN           , KC_PDOT , KC_SLSH , KC_QUOT ,   KC_EXLM , KC_BSLS, 
+    LCTL_T(KC_BSPC) , KC_R  , KC_S   ,  KC_N    , KC_D           ,  KC_B               ,                                                                                     KC_COMM           , KC_A    , KC_E    , KC_I    ,   KC_H    , KC_QUOT, 
+    KC_LSFT         , KC_X  , KC_F   ,  KC_L    , KC_C           ,  KC_W               ,  KC_LSFT        ,  DF(HANDS_DOWN),            DF(QWERTY)       , KC_LSFT          , KC_MINS           , KC_U    , KC_O    , KC_Y    , KC_K    , KC_MINS , 
+                                        KC_LGUI , LT(FUN,KC_DEL) ,  LT(ADJUST,KC_BSPC) ,  LT(LOWER,KC_T) ,  LT(RAISE,KC_ENT),          LT(LOWER,KC_ENT) , LT(RAISE,KC_SPC) , LT(ADJUST,KC_TAB) , KC_BSPC , KC_APP) ,
 
 /*
  * Base Layer: QWERTY
@@ -73,30 +64,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
 [QWERTY] = LAYOUT
-    (KC_ESC         , KC_Q  , KC_W    , KC_E      , KC_R           , KC_T               ,                                                                                     KC_Y              , KC_U    , KC_I     , KC_O   , KC_P    , KC_BSLS, 
-    LCTL_T(KC_BSPC) , KC_A  , KC_S    , KC_D      , KC_F           , KC_G               ,                                                                                     KC_H              , KC_J    , KC_K     , KC_L   , KC_SCLN , KC_QUOT, 
-    KC_LSFT         , KC_Z  , KC_X    , KC_C      , KC_V           , KC_B               ,  KC_TRNS          , DF(HANDS_DOWN),           DF(QWERTY)       , KC_TRNS          , KC_N              , KC_M    , KC_COMM  , KC_DOT , KC_SLSH , KC_MINS,
-                                        KC_TRNS   , LT(FUN,KC_DEL) , LT(ADJUST,KC_BSPC) ,  LT(LOWER,KC_SPC) , LT(RAISE,KC_ENT),         LT(LOWER,KC_ENT) , LT(RAISE,KC_SPC) , LT(ADJUST,KC_TAB) , KC_BSPC , KC_TRNS) ,
+    (KC_ESC         , KC_Q  , KC_W  , KC_E    , KC_R           , KC_T               ,                                                                                     KC_Y          , KC_U    , KC_I     , KC_O   , KC_P    , KC_BSLS, 
+    LCTL_T(KC_BSPC) , KC_A  , KC_S  , KC_D    , KC_F           , KC_G               ,                                                                                     KC_H          , KC_J    , KC_K     , KC_L   , KC_SCLN , KC_QUOT, 
+    KC_LSFT         , KC_Z  , KC_X  , KC_C    , KC_V           , KC_B               ,  KC_TRNS          , DF(HANDS_DOWN)   ,            DF(QWERTY)       , KC_TRNS      , KC_N          , KC_M    , KC_COMM  , KC_DOT , KC_SLSH , KC_MINS,
+                                      KC_TRNS , LT(FUN,KC_DEL) , LT(ADJUST,KC_BSPC) ,  LT(LOWER,KC_SPC) , LT(RAISE,KC_ENT) ,            LT(LOWER,KC_ENT) , LT(RAISE,KC_SPC) , LT(ADJUST,KC_TAB) , KC_BSPC , KC_TRNS) ,
 
 /*
  * LOWER Layer: Symbols
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |    `   |  1   |  2   |  3   |  4   |  5   |                              |   6  |  7   |  8   |  9   |  0   |   =    |
+ * |  ` ~   |  !   |  @   |  {   |  }   |  |   |                              |      |  &   |      |      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |    ~   |  !   |  @   |  #   |  $   |  %   |                              |   ^  |  &   |  *   |  (   |  )   |   +    |
+ * |    ~   |  #   |  $   |  (   |  )   | ` ~  |                              |   +  |  -   |  /   |  *   |   %  |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |    |   |   \  |  :   |  ;   |  -   |  [   |  {   |      |  |      |   }  |   ]  |  _   |  ,   |  .   |  /   |   ?    |
+ * |    |   |  %   |  ^   |  <   |  >   |  ~   |      |      |  |      |      |   &  |  +=  |  <   |  >   |  / ? |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 [LOWER] = LAYOUT
-    (KC_GRV, KC_EXLM, KC_AT, KC_LCBR, KC_RCBR, KC_PIPE,                                  KC_TRNS, KC_AMPR, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
-    KC_TILD, KC_HASH, KC_DLR, KC_LPRN, KC_RPRN, KC_GRV,                                  KC_PLUS, KC_MINS, KC_SLSH, KC_ASTR, KC_PERC, KC_TRNS, 
-    KC_PIPE, KC_PERC, KC_CIRC, KC_LT, KC_GT, KC_TILD, KC_TRNS, KC_TRNS,         KC_TRNS, KC_TRNS, KC_AMPR, KC_EQL, KC_LT, KC_GT, KC_SLSH, KC_TRNS, 
-                      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+    (KC_GRV , KC_EXLM , KC_AT   , KC_LCBR , KC_RCBR , KC_PIPE ,                                               KC_TRNS , KC_AMPR , KC_TRNS  , KC_TRNS  , KC_TRNS , KC_TRNS, 
+    KC_TILD , KC_HASH , KC_DLR  , KC_LPRN , KC_RPRN , KC_GRV  ,                                               KC_PLUS , KC_MINS , KC_SLSH  , KC_ASTR  , KC_PERC , KC_TRNS, 
+    KC_PIPE , KC_PERC , KC_CIRC , KC_LT   , KC_GT   , KC_TILD , KC_TRNS , KC_TRNS,         KC_TRNS , KC_TRNS, KC_AMPR , KC_EQL  , KC_LT    , KC_GT    , KC_SLSH , KC_TRNS, 
+                                  KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,        KC_TRNS , KC_TRNS, KC_TRNS , KC_TRNS , KC_TRNS) ,
 
 /*
  * RAISE Layer: Media, navigation
@@ -113,10 +104,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
 [RAISE] = LAYOUT
-    (KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                KC_TRNS, KC_HOME, KC_UP, KC_PGUP, KC_VOLU, KC_DEL, 
-    KC_TRNS,  KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, KC_TRNS,                                KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, KC_VOLD, KC_INS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_END, KC_MPLY, KC_PGDN, KC_MUTE, KC_PSCR, 
-                      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+    (KC_TRNS, KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,                                                     KC_TRNS , KC_HOME , KC_UP   , KC_PGUP , KC_VOLU , KC_DEL, 
+    KC_TRNS , KC_LCTL , KC_LALT , KC_LGUI , KC_LSFT , KC_TRNS ,                                                     KC_TRNS , KC_LEFT , KC_DOWN , KC_RGHT , KC_VOLD , KC_INS,
+    KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,             KC_TRNS , KC_TRNS , KC_TRNS , KC_END  , KC_MPLY , KC_PGDN , KC_MUTE , KC_PSCR, 
+                                  KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,             KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS),
 
 /*
  * Function Layer: Function keys, RGB
@@ -133,10 +124,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
 [FUN] = LAYOUT
-    (DF(HANDS_DOWN) , KC_F9, KC_F10  , KC_F11  , KC_F12  , KC_TRNS ,                                                     KC_TRNS , KC_PSTE, KC_COPY, KC_CUT,  KC_UNDO, DF(HANDS_DOWN), 
-    DF(QWERTY)      , KC_F5, KC_F6   , KC_F7   , KC_F8   , KC_TRNS ,                                                     RGB_TOG , RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD, DF(QWERTY), 
-    KC_TRNS         , KC_F1, KC_F2   , KC_F3   , KC_F4   , KC_TRNS , KC_TRNS, KC_TRNS,               KC_TRNS , KC_TRNS , KC_TRNS , RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD, KC_TRNS, 
-                             KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS, KC_TRNS,               KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS),
+    (DF(HANDS_DOWN), KC_F9, KC_F10  , KC_F11  , KC_F12  , KC_TRNS ,                                                      KC_TRNS , KC_PSTE , KC_COPY , KC_CUT  , KC_UNDO  , DF(HANDS_DOWN), 
+    DF(QWERTY)     , KC_F5, KC_F6   , KC_F7   , KC_F8   , KC_TRNS ,                                                      RGB_TOG , RGB_SAI , RGB_HUI , RGB_VAI , RGB_MOD  , DF(QWERTY), 
+    KC_TRNS        , KC_F1, KC_F2   , KC_F3   , KC_F4   , KC_TRNS , KC_TRNS , KC_TRNS,               KC_TRNS , KC_TRNS , KC_TRNS , RGB_SAD , RGB_HUD , RGB_VAD , RGB_RMOD , KC_TRNS, 
+                                      KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS,               KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS),
 
 /*
  * Adjust Layer: Numbers, some symbols
@@ -153,16 +144,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
 [ADJUST] = LAYOUT
-    (KC_GRV, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                                   KC_PSLS, KC_P7, KC_P8, KC_P9, KC_PMNS, KC_TRNS, 
-    KC_TILD, KC_HASH, KC_DLR, KC_LPRN, KC_RPRN, KC_TRNS,                                                    KC_PAST, KC_P4, KC_P5, KC_P6, KC_PPLS, KC_TRNS, 
-    KC_PIPE, KC_TRNS, KC_TRNS, KC_LT, KC_GT, KC_TILD, KC_TRNS, KC_TRNS,                   KC_TRNS, KC_TRNS, KC_P0, KC_P1, KC_P2, KC_P3, KC_PEQL, KC_TRNS, 
-                      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS)
+    (KC_GRV , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,                                                           KC_PSLS , KC_P7   , KC_P8    , KC_P9 , KC_PMNS , KC_TRNS, 
+    KC_TILD , KC_HASH , KC_DLR  , KC_LPRN , KC_RPRN , KC_TRNS ,                                                           KC_PAST , KC_P4   , KC_P5    , KC_P6 , KC_PPLS , KC_TRNS, 
+    KC_PIPE , KC_TRNS , KC_TRNS , KC_LT   , KC_GT   , KC_TILD , KC_TRNS , KC_TRNS ,                   KC_TRNS , KC_TRNS , KC_P0   , KC_P1   , KC_P2    , KC_P3 , KC_PEQL , KC_TRNS, 
+                                  KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,                   KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS)
 
 };
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, LOWER, RAISE, ADJUST);
-}
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_180; }

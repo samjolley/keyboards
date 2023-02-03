@@ -1,4 +1,4 @@
-/* Copyright 2019 Thomas Baart <thomas@splitkb.com>
+/* Copyright 2023 Sam Jolley
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,31 +14,149 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
-#include g/keymap_combo.h
+#include "g/keymap_combo.h"
 
 enum layers {
     HANDS_DOWN = 0,
+    QWERTY,
     LOWER,
     RAISE,
+    FUN,
     ADJUST,
-    FUNCTION,
-    QWERTY,
 };
+
+// Aliases for readability
+#define HANDS_DOWN  DF(HANDS_DOWN)
+#define QWERTY      DF(QWERTY)
+
+#define LOWER      LT(LOWER)
+#define RAISE      LT(RAISE)
+#define FUN        LT(FUN)
+#define ADJUST     LT(ADJUST)
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-[HANDS_DOWN] = LAYOUT(KC_ESC, KC_J, KC_G, KC_M, KC_P, KC_V, KC_SCLN, KC_PDOT, KC_SLSH, KC_QUOT, KC_EXLM, KC_BSLS, LCTL(KC_BSPC), KC_R, KC_S, KC_N, KC_D, KC_B, KC_COMM, KC_A, KC_E, KC_I, KC_H, KC_QUOT, KC_LSFT, KC_X, KC_F, KC_L, KC_C, KC_W, KC_LSFT, TG(0), TG(4), KC_LSFT, KC_MINS, KC_U, KC_O, KC_Y, KC_K, KC_MINS, KC_LGUI, LT(4,KC_DEL), LT(3,KC_BSPC), LT(1,KC_T), LT(2,KC_ENT), LT(1,KC_ENT), LT(2,KC_SPC), LT(3,KC_TAB), LT(4,KC_BSPC), KC_APP),
+/*
+ * Base Layer: HANDS DOWN GOLD
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |  Esc   |   J  |   G  |   M  |   P  |   V  |                              |  ; : |  . & |  / ? |  ' " |   !  |  \  |  |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |Ctrl/Bsp|   R  |   S  |   N  |   D  |   B  |                              |  , < |   A  |   E  |   I  |   H  |  ' "   |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * | LShift |   X  |   F  |   L  |   C  |   W  |LShift|HDSDWN|  |QWERTY|LShift| - _  |   U  |   O  |   Y  | /  ? |  - _   |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        | LGUI |Delete|BSP   |   T  |Enter |  |Enter |Space |Tab   | BSP  |Menu  |
+ *                        |      |FUN   |ADJUST|LOWER |RAISE |  |LOWER |RAISE |ADJUST| FUN  |Vol+/_|
+ *                        `----------------------------------'  `----------------------------------'
+ */
 
-[LOWER] = LAYOUT(KC_GRV, KC_EXLM, KC_AT, KC_LCBR, KC_RCBR, KC_PIPE, KC_TRNS, KC_AMPR, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TILD, KC_HASH, KC_DLR, KC_LPRN, KC_RPRN, KC_GRV, KC_PLUS, KC_MINS, KC_SLSH, KC_ASTR, KC_PERC, KC_TRNS, KC_PIPE, KC_PERC, KC_CIRC, KC_LT, KC_GT, KC_TILD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_AMPR, KC_EQL, KC_LT, KC_GT, KC_SLSH, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+[HANDS_DOWN] = LAYOUT(
+    KC_ESC          , KC_J  , KC_G   ,  KC_M    ,  KC_P            ,  KC_V               ,                                                                                      KC_SCLN           , KC_PDOT , KC_SLSH , KC_QUOT ,   KC_EXLM , KC_BSLS, 
+    LCTL_T(KC_BSPC) , KC_R  , KC_S   ,  KC_N    ,  KC_D            ,  KC_B               ,                                                                                      KC_COMM           , KC_A    , KC_E    , KC_I    ,   KC_H    , KC_QUOT, 
+    KC_LSFT         , KC_X  , KC_F   ,  KC_L    ,  KC_C            ,  KC_W               ,  KC_LSFT        ,  DF(HANDS_DOWN),            DF(QWERTY)        , KC_LSFT          , KC_MINS           , KC_U    , KC_O    , KC_Y    ,   KC_K    , KC_MINS, 
+                                        KC_LGUI ,  LT(FUN,KC_DEL)  ,  LT(ADJUST,KC_BSPC) ,  LT(LOWER,KC_T) ,  LT(RAISE,KC_ENT),          LT(LOWER,KC_ENT)  , LT(RAISE,KC_SPC) , LT(ADJUST,KC_TAB) , KC_BSPC , KC_APP) ,
 
-[RAISE] = LAYOUT(KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_UP, KC_PGUP, KC_VOLU, KC_DEL, KC_TRNS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, KC_VOLD, KC_INS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_END, KC_MPLY, KC_PGDN, KC_MUTE, KC_PSCR, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+/*
+ * Base Layer: QWERTY
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |  Esc   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  \  |  |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |Ctrl/Bsp|   A  |   S  |   D  |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  ' "   |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * | LShift |   Z  |   X  |   C  |   V  |   B  |LShift|HDSDWN|  |QWERTY|LShift|   N  |   M  | ,  < | . >  | /  ? |  - _   |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        | LGUI |Delete|BSP   |   T  |Enter |  |Enter |Space |Tab   | BSP  |Menu  |
+ *                        |      |FUN   |ADJUST|LOWER |RAISE |  |LOWER |RAISE |ADJUST| FUN  |Vol+/_|
+ *                        `----------------------------------'  `----------------------------------'
+ */
+[QWERTY] = LAYOUT
+    (KC_ESC         , KC_Q  , KC_W    , KC_E      , KC_R           , KC_T               ,                                                                                     KC_Y              , KC_U    , KC_I     , KC_O   , KC_P    , KC_BSLS, 
+    LCTL_T(KC_BSPC) , KC_A  , KC_S    , KC_D      , KC_F           , KC_G               ,                                                                                     KC_H              , KC_J    , KC_K     , KC_L   , KC_SCLN , KC_QUOT, 
+    KC_LSFT         , KC_Z  , KC_X    , KC_C      , KC_V           , KC_B               ,  KC_TRNS          , DF(HANDS_DOWN),           DF(QWERTY)       , KC_TRNS          , KC_N              , KC_M    , KC_COMM  , KC_DOT , KC_SLSH , KC_MINS,
+                                        KC_TRNS   , LT(FUN,KC_DEL) , LT(ADJUST,KC_BSPC) ,  LT(LOWER,KC_SPC) , LT(RAISE,KC_ENT),         LT(LOWER,KC_ENT) , LT(RAISE,KC_SPC) , LT(ADJUST,KC_TAB) , KC_BSPC , KC_TRNS) ,
 
-[ADJUST] = LAYOUT(KC_GRV, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PSLS, KC_P7, KC_P8, KC_P9, KC_PMNS, KC_TRNS, KC_TILD, KC_HASH, KC_DLR, KC_LPRN, KC_RPRN, KC_TRNS, KC_PAST, KC_P4, KC_P5, KC_P6, KC_PPLS, KC_TRNS, KC_PIPE, KC_TRNS, KC_TRNS, KC_LT, KC_GT, KC_TILD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_COMM, KC_P1, KC_P2, KC_P3, KC_PEQL, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+/*
+ * LOWER Layer: Symbols
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |    `   |  1   |  2   |  3   |  4   |  5   |                              |   6  |  7   |  8   |  9   |  0   |   =    |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |    ~   |  !   |  @   |  #   |  $   |  %   |                              |   ^  |  &   |  *   |  (   |  )   |   +    |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |    |   |   \  |  :   |  ;   |  -   |  [   |  {   |      |  |      |   }  |   ]  |  _   |  ,   |  .   |  /   |   ?    |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+[LOWER] = LAYOUT
+    (KC_GRV, KC_EXLM, KC_AT, KC_LCBR, KC_RCBR, KC_PIPE,                                  KC_TRNS, KC_AMPR, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
+    KC_TILD, KC_HASH, KC_DLR, KC_LPRN, KC_RPRN, KC_GRV,                                  KC_PLUS, KC_MINS, KC_SLSH, KC_ASTR, KC_PERC, KC_TRNS, 
+    KC_PIPE, KC_PERC, KC_CIRC, KC_LT, KC_GT, KC_TILD, KC_TRNS, KC_TRNS,         KC_TRNS, KC_TRNS, KC_AMPR, KC_EQL, KC_LT, KC_GT, KC_SLSH, KC_TRNS, 
+                      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
 
-[FUNCTION] = LAYOUT(KC_TRNS, KC_F9, KC_F10, KC_F11, KC_F12, KC_TRNS, KC_TRNS, KC_PSTE, KC_COPY, KC_CUT, KC_UNDO, DF(0), KC_TRNS, KC_F5, KC_F6, KC_F7, KC_F8, KC_TRNS, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD, DF(5), KC_TRNS, KC_F1, KC_F2, KC_F3, KC_F4, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+/*
+ * RAISE Layer: Media, navigation
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |        |      |      |      |      |      |                              |      | Home |   ↑  |PgeUp | VolUp| Delete |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |        | Ctrl |  Alt | Gui  | Shift|      |                              |      |  ←   |   ↓  |   →  | VolDn| Insert |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |      |  |      |      |      | End  | Play |PgeDwn|VolMut| PrtSc  |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+[RAISE] = LAYOUT
+    (KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                KC_TRNS, KC_HOME, KC_UP, KC_PGUP, KC_VOLU, KC_DEL, 
+    KC_TRNS,  KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, KC_TRNS,                                KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, KC_VOLD, KC_INS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_END, KC_MPLY, KC_PGDN, KC_MUTE, KC_PSCR, 
+                      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
 
-[QWERTY] = LAYOUT(KC_TRNS, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_TRNS, KC_TRNS, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_TRNS, KC_TRNS, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS) 
+/*
+ * Function Layer: Function keys, RGB
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |HANDSDWN|  F9  | F10  | F11  | F12  |      |                              |      |Paste | Copy | Cut  | Undo |HANDSDWN|
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * | QWERTY |  F5  |  F6  |  F7  |  F8  |      |                              | RGB  | Sat+ | Hue+ |Bright| RGB+ | QWERTY |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |        |  F1  |  F2  |  F3  |  F4  |      |      |      |  |      |      |      | Sat- | Hue- | Dim  | RGB- |        |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+[FUN] = LAYOUT
+    (DF(HANDS_DOWN) , KC_F9, KC_F10  , KC_F11  , KC_F12  , KC_TRNS ,                                                     KC_TRNS , KC_PSTE, KC_COPY, KC_CUT,  KC_UNDO, DF(HANDS_DOWN), 
+    DF(QWERTY)      , KC_F5, KC_F6   , KC_F7   , KC_F8   , KC_TRNS ,                                                     RGB_TOG , RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD, DF(QWERTY), 
+    KC_TRNS         , KC_F1, KC_F2   , KC_F3   , KC_F4   , KC_TRNS , KC_TRNS, KC_TRNS,               KC_TRNS , KC_TRNS , KC_TRNS , RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD, KC_TRNS, 
+                             KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS, KC_TRNS,               KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS),
+
+/*
+ * Adjust Layer: Numbers, some symbols
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |        |      |      |      |      |      |                              |   /  |   7  |   8  |   9  |   -  |        |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |   ~    |   #  |   $  |   (  |  )   |      |                              |   *  |   4  |   5  |   6  |   +  |        |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |    |   |      |      |  <   |  >   |  ~   |      |      |  |      |      |   0  |   1  |   2  |   3  |   =  |        |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+[ADJUST] = LAYOUT
+    (KC_GRV, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                                   KC_PSLS, KC_P7, KC_P8, KC_P9, KC_PMNS, KC_TRNS, 
+    KC_TILD, KC_HASH, KC_DLR, KC_LPRN, KC_RPRN, KC_TRNS,                                                    KC_PAST, KC_P4, KC_P5, KC_P6, KC_PPLS, KC_TRNS, 
+    KC_PIPE, KC_TRNS, KC_TRNS, KC_LT, KC_GT, KC_TILD, KC_TRNS, KC_TRNS,                   KC_TRNS, KC_TRNS, KC_P0, KC_P1, KC_P2, KC_P3, KC_PEQL, KC_TRNS, 
+                      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS)
 
 };
 
@@ -66,22 +184,22 @@ bool oled_task_user(void) {
         oled_write_P(PSTR("Layer: "), false);
         switch (get_highest_layer(layer_state|default_layer_state)) {
             case HANDS_DOWN:
-                oled_write_P(PSTR("Hands Down Gold\n"), false);
+                oled_write_P(PSTR("HandsDown Gold\n"), false);
                 break;
+            case QWERTY:
+                oled_write_P(PSTR("Qwerty\n"), false);
+                break; 
             case LOWER:
                 oled_write_P(PSTR("Lower\n"), false);
                 break;
             case RAISE:
                 oled_write_P(PSTR("Raise\n"), false);
                 break;
+            case FUN:
+                oled_write_P(PSTR("Function\n"), false);
+                break;   
             case ADJUST:
                 oled_write_P(PSTR("Adjust\n"), false);
-                break;
-            case FUNCTION:
-                oled_write_P(PSTR("Function\n"), false);
-                break;
-            case QWERTY:
-                oled_write_P(PSTR("Qwerty\n"), false);
                 break;
             default:
                 oled_write_P(PSTR("Undefined\n"), false);
@@ -117,16 +235,16 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         // Page up/Page down
         if (clockwise) {
-            tap_code(KC_PGDN);
-        } else {
             tap_code(KC_PGUP);
+        } else {
+            tap_code(KC_PGDN);
         }
     } else if (index == 1) {
         // Volume control
         if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
             tap_code(KC_VOLD);
+        } else {
+            tap_code(KC_VOLU);
         }
     }
     return false;

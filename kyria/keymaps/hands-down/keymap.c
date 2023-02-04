@@ -1,4 +1,4 @@
-/* Copyright 2023 Sam Jolley
+$$$$$$$$$/* Copyright 2023 Sam Jolley
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,11 +35,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: HANDS DOWN GOLD
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |  Esc   |   J  |   G  |   M  |   P  |   V  |                              |  ; : |  . & |  / ? |  ' " |   !  |  \  |  |
+ * |  Esc   |   J  |   G  |   M  |   P  |   V  |                              |  ; : |  . & |  / ? |   !  | ' "  |  \  |  |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |Ctrl/Bsp|   R  |   S  |   N  |   D  |   B  |                              |  , < |   A  |   E  |   I  |   H  |  ' "   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | LShift |   X  |   F  |   L  |   C  |   W  |LShift|HDSDWN|  |QWERTY|LShift| - _  |   U  |   O  |   Y  | /  ? |  - _   |
+ * | LShift |   X  |   F  |   L  |   C  |   W  |LShift|HDSDWN|  |QWERTY|LShift| - _  |   U  |   O  |   Y  |   K  |  - _   |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        | LGUI |Delete|Enter |   T  |Enter |  |Enter |Space |Tab   | BSP  |Menu  |
  *                        |      |FUN   |ADJUST|LOWER |RAISE |  |LOWER |RAISE |ADJUST|      |Vol+/_|
@@ -47,9 +47,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [HANDS_DOWN] = LAYOUT(
-    KC_ESC          , KC_J  , KC_G   ,  KC_M    , KC_P           ,  KC_V               ,                                                                                     KC_SCLN           , KC_PDOT , KC_SLSH , KC_QUOT ,   KC_EXLM , KC_BSLS, 
+    KC_ESC          , KC_J  , KC_G   ,  KC_M    , KC_P           ,  KC_V               ,                                                                                     KC_SCLN           , KC_DOT  , KC_SLSH , KC_EXLM ,   KC_QUOT , KC_BSLS, 
     LCTL_T(KC_BSPC) , KC_R  , KC_S   ,  KC_N    , KC_D           ,  KC_B               ,                                                                                     KC_COMM           , KC_A    , KC_E    , KC_I    ,   KC_H    , KC_QUOT, 
-    KC_LSFT         , KC_X  , KC_F   ,  KC_L    , KC_C           ,  KC_W               ,  KC_LSFT        ,  DF(HANDS_DOWN),            DF(QWERTY)       , KC_LSFT          , KC_MINS           , KC_U    , KC_O    , KC_Y    , KC_K      , KC_MINS, 
+    KC_LSFT         , KC_X  , KC_F   ,  KC_L    , KC_C           ,  KC_W               ,  KC_LSFT        ,  DF(HANDS_DOWN),            DF(QWERTY)       , KC_LSFT          , KC_MINS           , KC_U    , KC_O    , KC_Y    ,   KC_K    , KC_MINS, 
                                         KC_LGUI , LT(FUN,KC_DEL) ,  LT(ADJUST,KC_ENT)  ,  LT(LOWER,KC_T) ,  LT(RAISE,KC_ENT),          LT(LOWER,KC_ENT) , LT(RAISE,KC_SPC) , LT(ADJUST,KC_TAB) , KC_BSPC , KC_APP) ,
 
 /*
@@ -67,9 +67,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
 [QWERTY] = LAYOUT
-    (KC_ESC         , KC_Q  , KC_W  , KC_E    , KC_R           , KC_T               ,                                                                                     KC_Y          , KC_U    , KC_I     , KC_O   , KC_P    , KC_BSLS, 
-    LCTL_T(KC_BSPC) , KC_A  , KC_S  , KC_D    , KC_F           , KC_G               ,                                                                                     KC_H          , KC_J    , KC_K     , KC_L   , KC_SCLN , KC_QUOT, 
-    KC_LSFT         , KC_Z  , KC_X  , KC_C    , KC_V           , KC_B               ,  KC_TRNS          , DF(HANDS_DOWN)   ,            DF(QWERTY)       , KC_TRNS      , KC_N          , KC_M    , KC_COMM  , KC_DOT , KC_SLSH , KC_MINS,
+    (KC_ESC         , KC_Q  , KC_W  , KC_E    , KC_R           , KC_T               ,                                                                                         KC_Y          , KC_U    , KC_I     , KC_O   , KC_P    , KC_BSLS, 
+    LCTL_T(KC_BSPC) , KC_A  , KC_S  , KC_D    , KC_F           , KC_G               ,                                                                                         KC_H          , KC_J    , KC_K     , KC_L   , KC_SCLN , KC_QUOT, 
+    KC_LSFT         , KC_Z  , KC_X  , KC_C    , KC_V           , KC_B               ,  KC_TRNS          , DF(HANDS_DOWN)   ,            DF(QWERTY)       , KC_TRNS          , KC_N              , KC_M    , KC_COMM  , KC_DOT , KC_SLSH , KC_MINS,
                                       KC_TRNS , LT(FUN,KC_DEL) , LT(ADJUST,KC_BSPC) ,  LT(LOWER,KC_SPC) , LT(RAISE,KC_ENT) ,            LT(LOWER,KC_ENT) , LT(RAISE,KC_SPC) , LT(ADJUST,KC_TAB) , KC_BSPC , KC_TRNS) ,
 
 /*

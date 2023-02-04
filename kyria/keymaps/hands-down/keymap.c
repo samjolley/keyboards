@@ -32,7 +32,7 @@ enum layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /*
- * Base Layer: HANDS DOWN GOLD
+ * Base Layer: HANDS DOWN GOLD (Neu-tx)
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |  Esc   |   J  |   G  |   M  |   P  |   V  |                              |  ; : |  . & |  / ? |   !  | ' "  |  \  |  |
@@ -46,8 +46,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
 
-[HANDS_DOWN] = LAYOUT(
-    KC_ESC          , KC_J  , KC_G   ,  KC_M    , KC_P           ,  KC_V               ,                                                                                     KC_SCLN           , KC_DOT  , KC_SLSH , KC_EXLM ,   KC_QUOT , KC_BSLS, 
+[HANDS_DOWN] = LAYOUT
+    (KC_ESC         , KC_J  , KC_G   ,  KC_M    , KC_P           ,  KC_V               ,                                                                                     KC_SCLN           , KC_DOT  , KC_SLSH , KC_EXLM ,   KC_QUOT , KC_BSLS, 
     LCTL_T(KC_BSPC) , KC_R  , KC_S   ,  KC_N    , KC_D           ,  KC_B               ,                                                                                     KC_COMM           , KC_A    , KC_E    , KC_I    ,   KC_H    , KC_QUOT, 
     KC_LSFT         , KC_X  , KC_F   ,  KC_L    , KC_C           ,  KC_W               ,  KC_LSFT        ,  DF(HANDS_DOWN),            DF(QWERTY)       , KC_LSFT          , KC_MINS           , KC_U    , KC_O    , KC_Y    ,   KC_K    , KC_MINS, 
                                         KC_LGUI , LT(FUN,KC_DEL) ,  LT(ADJUST,KC_ENT)  ,  LT(LOWER,KC_T) ,  LT(RAISE,KC_ENT),          LT(LOWER,KC_ENT) , LT(RAISE,KC_SPC) , LT(ADJUST,KC_TAB) , KC_BSPC , KC_APP) ,

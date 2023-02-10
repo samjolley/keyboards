@@ -1,14 +1,13 @@
-//   name     		result   	 chord keys
-COMB(JG_Z,   		KC_Z,   	 KC_J, KC_G)	// Z
-COMB(YK_Q,   	    KC_Q,   	 KC_Y, KC_K)	// Q
-COMB(XF_UNDO,    	KC_UNDO,     KC_X, KC_F)	// undo
-COMB(XL_CUT,    	KC_CUT,      KC_X, KC_L)	// cut
-COMB(FL_COPY,    	KC_COPY,     KC_F, KC_L)	// copy
-COMB(LC_PASTE,    	KC_PASTE,    KC_L, KC_C)	// paste
-COMB(FC_PSTM,    	KC_PSTM,     KC_F, KC_C)	// paste match
-COMB(XC_SALL,    	KC_SALL,     KC_X, KC_C)	// select all
-COMB(XV_KILL,    	F_KILL,      KC_X, KC_V)	// force quit
-COMB(JK_SCLP,    	F_SCLP,      KC_J, KC_K)	// screenshot selection to clipboard
-COMB(JW_SCAP,    	F_SCAP,      KC_J, KC_W)	// screenshot selection to file
-COMB(CU_CAPS,    	F_CAPS,      KC_C, KC_U)	// CAPS LOCK
-COMB(FW_FIND,    	KC_FIND,     KC_F, KC_W)	// find
+//   name     		result   	 		chord keys
+COMB(JG_Z,   		KC_Z,   	 		KC_J, KC_G)	// Z
+COMB(YK_Q,   	    KC_Q,   			KC_Y, KC_K)	// Q
+COMB(XF_UNDO,    	KC_UNDO,     		KC_X, KC_F)	// undo
+COMB(XL_CUT,    	KC_CUT,     		KC_X, KC_L)	// cut
+COMB(FL_COPY,    	KC_COPY,     		KC_F, KC_L)	// copy
+COMB(LC_PASTE,    	KC_PASTE,    		KC_L, KC_C)	// paste
+COMB(FC_PSTM,    	C_S_T(KC_PASTE), 	KC_F, KC_C)	// paste match
+COMB(XC_SALL,    	LCTL(KC_A),			KC_X, KC_C)	// select all
+COMB(XV_KILL,    	LALT(KC_F4),  		KC_X, KC_V)	// force quit
+COMB(JK_SCLP,    	LSG(KC_S),    		KC_J, KC_K)	// screenshot selection to clipboard
+COMB(CU_CAPS,    	KC_CAPS,      		KC_C, KC_U)	// CAPS LOCK
+COMB(FW_FIND,    	KC_FIND,     		KC_F, KC_W)	// find

@@ -7,3 +7,8 @@ COMB(FL_COPY,    	KC_COPY,     KC_F, KC_L)	// copy
 COMB(LC_PASTE,    	KC_PASTE,    KC_L, KC_C)	// paste
 COMB(FC_PSTM,    	KC_PSTM,     KC_F, KC_C)	// paste match
 COMB(XC_SALL,    	KC_SALL,     KC_X, KC_C)	// select all
+COMB(XV_KILL,    	F_KILL,      KC_X, KC_V)	// force quit
+COMB(JK_SCLP,    	F_SCLP,      KC_J, KC_K)	// screenshot selection to clipboard
+COMB(JW_SCAP,    	F_SCAP,      KC_J, KC_W)	// screenshot selection to file
+COMB(CU_CAPS,    	F_CAPS,      KC_C, KC_U)	// CAPS LOCK
+COMB(FW_FIND,    	KC_FIND,     KC_F, KC_W)	// find

@@ -47,10 +47,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [HANDS_DOWN] = LAYOUT
-    (KC_ESC         , KC_J  , KC_G   ,  KC_M    , KC_P           ,  KC_V               ,                                                                                     KC_SCLN           , KC_COMM , KC_DOT  , KC_EXLM ,   KC_SLSH , KC_BSLS, 
-    LCTL_T(KC_BSPC) , KC_R  , KC_S   ,  KC_N    , KC_D           ,  KC_B               ,                                                                                     KC_AMPR           , KC_A    , KC_E    , KC_I    ,   KC_H    , KC_QUOT, 
-    KC_LSFT         , KC_X  , KC_F   ,  KC_L    , KC_C           ,  KC_W               ,  KC_LSFT        ,  DF(HANDS_DOWN),            DF(QWERTY)       , KC_LSFT          , KC_MINS           , KC_U    , KC_O    , KC_Y    ,   KC_K    , KC_MINS, 
-                                        KC_LGUI , LT(FUN,KC_DEL) ,  LT(ADJUST,KC_ENT)  ,  LT(LOWER,KC_T) ,  LT(RAISE,KC_ENT),          LT(LOWER,KC_ENT) , LT(RAISE,KC_SPC) , LT(ADJUST,KC_TAB) , KC_BSPC , KC_APP) ,
+    (KC_ESC         , KC_J  , KC_G    , KC_M            , KC_P           , KC_V               ,                                                                                     KC_SCLN           , KC_COMM           , KC_DOT          , KC_EXLM         , KC_SLSH         , KC_BSLS, 
+    LCTL_T(KC_BSPC) , KC_LCTL_T(KC_R) , KC_LALT_T(KC_S) , KC_LGUI_T(KC_N), KC_LSFT_T(KC_D)    ,  KC_B           ,                                                                   KC_AMPR           , KC_LSFT_T(KC_A)   , KC_LGUI_T(KC_E) , KC_LALT_T(KC_I) , KC_LCTL_T(KC_H) , KC_QUOT, 
+    KC_LSFT         , KC_X  , KC_F    , KC_L            , KC_C           , KC_W               ,  KC_LSFT        ,  DF(HANDS_DOWN),            DF(QWERTY)       , KC_LSFT          , KC_MINS           , KC_U    , KC_O    , KC_Y            , KC_K            , KC_MINS         , 
+                                        KC_LGUI         , LT(FUN,KC_DEL) , LT(ADJUST,KC_ENT)  ,  LT(LOWER,KC_T) ,  LT(RAISE,KC_ENT),          LT(LOWER,KC_ENT) , LT(RAISE,KC_SPC) , LT(ADJUST,KC_TAB) , KC_BSPC , KC_APP) ,
 
 /*
  * Base Layer: QWERTY

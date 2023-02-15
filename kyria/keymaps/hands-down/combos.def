@@ -6,7 +6,7 @@ COMB(RS_REDO,    	C_S_T(KC_Y),   		KC_R, KC_S)	// redo
 COMB(XL_CUT,    	LCTL(KC_X),    		KC_X, KC_L)	// cut
 COMB(FL_COPY,    	LCTL(KC_C),    		KC_F, KC_L)	// copy
 COMB(LC_PASTE,    	LCTL(KC_V),    		KC_L, KC_C)	// paste
-COMB(FC_PSTM,    	C_S_T(KC_PASTE), 	KC_F, KC_C)	// paste match
+COMB(FC_PSTM,    	C_S_T(KC_V),	 	KC_F, KC_C)	// paste match
 COMB(XC_SALL,    	LCTL(KC_A),			KC_X, KC_C)	// select all
 COMB(XV_KILL,    	LALT(KC_F4),  		KC_X, KC_V)	// force quit
 COMB(JK_SCLP,    	LSG(KC_S),    		KC_J, KC_K)	// screenshot

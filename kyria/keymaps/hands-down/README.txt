@@ -20,3 +20,8 @@ NA
 
 Notes:
 qmk_firmware]$ make splitkb/kyria/rev1:samjolleyhandsdowngold
+
+Future build ideas:
+Wireless Kyria (figure out ZMK, encoders, etc.)
+Nice!Display (show battery % for both sides on one screen)
+Trackpoint (Lenovo?)

@@ -10,7 +10,7 @@ RAISE (layer 4)  - Navigation and some symbols
 ADJUST (layer 5) - Numbers
 
 To Do:
-Adjust keymap for the reduced layout
+Adjust keymap for the reduced layout. Use Miryoku (https://caksoylar-keymap-drawer-streamlitapp-2a0rau.streamlit.app/?example_yaml=miryoku.yaml), hands down server peeps
 Tweak combos
 Emoji shorcuts?!
 Linger keys? Slight hold on Q = "qu" or Tap Dance

@@ -20,13 +20,18 @@
 #include "g/keymap_combo.h"
 
 enum layers {
-    HANDS_DOWN = 0,
-    QWERTY,
-    LOWER,
-    RAISE,
-    FUN,
-    ADJUST,
+    HANDS_DOWN = 0,  // Default alpha layer
+    EXTRA,           // QWERTY
+    SYM,             // Symbols
+    NAV,             // Navigation
+    FUN,             // F keys + keyboard settings
+    NUM,             // Numbers
+    MEDIA,           // Play, pause, etc.
+    MOUSE,           // Mouse keys
+    BUTTON,          // Shortcuts for copy/paste, alt/control/GUI/shift, etc.
 };
+
+
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -41,53 +46,54 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------|                              |------+------+------+------+------|
  * |   X  |   F  |   L  |   C  |   W  |                              | - _  |   U  |   O  |   Y  |   K  |
  * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
- *                      |PGUPDN|  T   |      |                |Enter |Space | Vol  |
- *                      |  NUM |LOWER |RAISE |                |LOWER |RAISE |      |
+ *                      |PGUPDN|Space |  T   |                |Enter |Bckspc|Vol   |
+ *                      |Esc   |SYM   | NAV  |                |SYM   |NAV   |Delete|
+ *                      |NUM   |      |      |                |      |      |FUN   |
  *                      `--------------------'                `--------------------'
  */
 
 [HANDS_DOWN] = LAYOUT
-    (KC_J        , KC_G         , KC_M           , KC_P           , KC_V            ,                   KC_SCLN          , KC_COMM          , KC_DOT            , KC_EXLM      , KC_SLSH      , KC_BSLS, 
-    LCTL_T(KC_R) , LALT_T(KC_S) , LGUI_T(KC_N)   , LSFT_T(KC_D)   , KC_B            ,                   KC_AMPR          , LSFT_T(KC_A)     , LGUI_T(KC_E)      , LALT_T(KC_I) , LCTL_T(KC_H) , KC_QUOT, 
-    KC_X         , KC_F         , KC_L           , KC_C           , KC_W            ,                   KC_MINS          , KC_U             , KC_O              , KC_Y         , KC_K         , KC_MINS, 
-                                  LT(FUN,KC_DEL) , LT(LOWER,KC_T) , LT(RAISE,KC_ENT),                   LT(LOWER,KC_ENT) , LT(RAISE,KC_SPC) , LT(ADJUST,KC_TAB) , KC_BSPC      , 
+    (KC_J        , KC_G         , KC_M           , KC_P           , KC_V         ,                                         KC_SCLN        , KC_COMM           , KC_DOT       , KC_EXLM      , KC_SLSH      , 
+    LCTL_T(KC_R) , LALT_T(KC_S) , LGUI_T(KC_N)   , LSFT_T(KC_D)   , KC_B         ,                                         KC_AMPR        , LSFT_T(KC_A)      , LGUI_T(KC_E) , LALT_T(KC_I) , LCTL_T(KC_H) , 
+    KC_X         , KC_F         , KC_L           , KC_C           , KC_W         ,                                         KC_MINS        , KC_U              , KC_O         , KC_Y         , KC_K         , 
+                                                   LT(FUN,KC_DEL) , LT(SYM,KC_T) , LT(NAV,KC_ENT),        LT(SYM,KC_ENT) , LT(NAV,KC_SPC) , LT(ADJUST,KC_TAB) , KC_BSPC      , 
 
 
 /*
- * LOWER Layer: Symbols
+ * SYM Layer: Symbols
  *
  * ,-------------------------------------------.                     ,----------------------------------.
  * |  ` ~   |  !   |  @   |  {   |  }   |  |   |                     |      |  &   |      |      |      |        
  * |--------+------+------+------+------+------|                     |------+------+------+------+------|
  * |    ~   |  #   |  $   |  (   |  )   | ` ~  |                     |   +  |  -   |  /   |  *   |   %  |        
- * |--------+------+------+------+------+------.              ,------|------+------+------+-------------|
- * |    |   |  %   |  ^   |  <   |  >   |  ~   |              |      |      |   &  |  +=  |  <   |  >   |     
- * `----------------------+------+------+------+------.       |------+------+------+------+------+------'
+ * |--------+------+------+------+------+------.                     ,------+------+------+-------------|
+ * |    |   |  %   |  ^   |  <   |  >   |  ~   |                     |      |   &  |  +=  |  <   |  >   |     
+ * `----------------------+------+------+------+------.       ,------+------+------+------+------+------'
  *                               |      |      |      |       |      |      |      |            
  *                               |      |      |      |       |      |      |      |            
  *                               `--------------------'       `--------------------'
  */
-[LOWER] = LAYOUT
+[SYM] = LAYOUT
     (KC_GRV , KC_EXLM , KC_AT   , KC_LCBR , KC_RCBR , KC_PIPE ,                                               KC_TRNS , KC_AMPR , KC_TRNS  , KC_TRNS  , KC_TRNS , KC_TRNS, 
     KC_TILD , KC_HASH , KC_DLR  , KC_LPRN , KC_RPRN , KC_GRV  ,                                               KC_PLUS , KC_MINS , KC_SLSH  , KC_ASTR  , KC_PERC , KC_TRNS, 
     KC_PIPE , KC_PERC , KC_CIRC , KC_LT   , KC_GT   , KC_TILD , KC_TRNS , KC_TRNS ,        KC_TRNS , KC_TRNS, KC_AMPR , KC_EQL  , KC_LT    , KC_GT    , KC_SLSH , KC_TRNS, 
                                   KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,        KC_TRNS , KC_TRNS, KC_TRNS , KC_TRNS , KC_TRNS) ,
 
 /*
- * RAISE Layer: Media, navigation
+ * NAV Layer: Media, navigation
  *
- * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |      |      |      |      |      |                              |      | Home |   ↑  |PgeUp | VolUp| Delete |
- * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        | Ctrl |  Alt | Gui  | Shift|      |                              |      |  ←   |   ↓  |   →  | VolDn| Insert |
- * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |      |  |      |      |      | End  | Play |PgeDwn|VolMut| PrtSc  |
- * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        `----------------------------------'  `----------------------------------'
+ * ,-------------------------------------------.                       ,-------------------------------------------.
+ * |        |      |      |      |      |      |                       |      | Home |   ↑  |PgeUp | VolUp| Delete |
+ * |--------+------+------+------+------+------|                       |------+------+------+------+------+--------|
+ * |        | Ctrl |  Alt | Gui  | Shift|      |                       |      |  ←   |   ↓  |   →  | VolDn| Insert |
+ * |--------+------+------+------+------+------+------.         ,------+------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |         |      |      | End  | Play |PgeDwn|VolMut| PrtSc  |
+ * `----------------------+------+------+------+------|         |------+------+------+------+------+---------------'
+ *                               |      |      |      |         |      |      |      |            
+ *                               |      |      |      |         |      |      |      |            
+ *                               `--------------------'         `--------------------'
  */
-[RAISE] = LAYOUT
+[NAV] = LAYOUT
     (KC_TRNS, KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,                                                     KC_TRNS , KC_HOME , KC_UP   , KC_PGUP , KC_VOLU , KC_DEL, 
     KC_TRNS , KC_LCTL , KC_LALT , KC_LGUI , KC_LSFT , KC_TRNS ,                                                     KC_TRNS , KC_LEFT , KC_DOWN , KC_RGHT , KC_VOLD , KC_INS,
     KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,             KC_TRNS , KC_TRNS , KC_TRNS , KC_END  , KC_MPLY , KC_PGDN , KC_MUTE , KC_PSCR, 
@@ -159,11 +165,11 @@ bool oled_task_user(void) {
             case QWERTY:
                 oled_write_P(PSTR("Qwerty\n"), false);
                 break; 
-            case LOWER:
-                oled_write_P(PSTR("Lower\n"), false);
+            case SYM:
+                oled_write_P(PSTR("SYM\n"), false);
                 break;
-            case RAISE:
-                oled_write_P(PSTR("Raise\n"), false);
+            case NAV:
+                oled_write_P(PSTR("NAV\n"), false);
                 break;
             case FUN:
                 oled_write_P(PSTR("Function\n"), false);

@@ -29,12 +29,30 @@ enum layers {
     MEDIA,           // Play, pause, etc.
     MOUSE,           // Mouse keys
     BUTTON,          // Shortcuts for copy/paste, alt/control/GUI/shift, etc.
+    EMOJI,           // Emojis, like ¯\_(ツ)_/¯
 };
 
 
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
+/*
+ * Keyboard Layout:
+ *
+ * ,----------------------------------.                              ,----------------------------------.
+ * |      |      |      |      |      |                              |      |      |      |      |      |
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |      |      |      |      |      |                              |      |      |      |      |      | 
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |      |      |      |      |      |                              |      |      |      |      |      |
+ * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
+ *                      |      |      |      |                |      |      |      |
+ *                      |      |      |      |                |      |      |      |
+ *                      |      |      |      |                |      |      |      |
+ *                      `--------------------'                `--------------------'
+ */
+
 
 /*
  * Base Layer: HANDS DOWN GOLD (Neu-tx)
@@ -46,52 +64,86 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------|                              |------+------+------+------+------|
  * |   X  |   F  |   L  |   C  |   W  |                              | - _  |   U  |   O  |   Y  |   K  |
  * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
- *                      |PGUPDN|Space |  T   |                |Enter |Bckspc|Vol   |
+ *                      |PGUPDN|Bckspc|  T   |                |Enter |Space |Vol   |
  *                      |Esc   |SYM   | NAV  |                |SYM   |NAV   |Delete|
  *                      |NUM   |      |      |                |      |      |FUN   |
  *                      `--------------------'                `--------------------'
  */
 
 [HANDS_DOWN] = LAYOUT
-    (KC_J        , KC_G         , KC_M           , KC_P           , KC_V         ,                                         KC_SCLN        , KC_COMM           , KC_DOT       , KC_EXLM      , KC_SLSH      , 
-    LCTL_T(KC_R) , LALT_T(KC_S) , LGUI_T(KC_N)   , LSFT_T(KC_D)   , KC_B         ,                                         KC_AMPR        , LSFT_T(KC_A)      , LGUI_T(KC_E) , LALT_T(KC_I) , LCTL_T(KC_H) , 
-    KC_X         , KC_F         , KC_L           , KC_C           , KC_W         ,                                         KC_MINS        , KC_U              , KC_O         , KC_Y         , KC_K         , 
-                                                   LT(FUN,KC_DEL) , LT(SYM,KC_T) , LT(NAV,KC_ENT),        LT(SYM,KC_ENT) , LT(NAV,KC_SPC) , LT(ADJUST,KC_TAB) , KC_BSPC      , 
-
+    (KC_J        , KC_G         , KC_M           , KC_P           , KC_V            ,                                       KC_SCLN        , KC_COMM           , KC_DOT       , KC_EXLM      , KC_SLSH      , 
+    LCTL_T(KC_R) , LALT_T(KC_S) , LGUI_T(KC_N)   , LSFT_T(KC_D)   , KC_B            ,                                       KC_AMPR        , LSFT_T(KC_A)      , LGUI_T(KC_E) , LALT_T(KC_I) , LCTL_T(KC_H) , 
+    KC_X         , KC_F         , KC_L           , KC_C           , KC_W            ,                                       KC_MINS        , KC_U              , KC_O         , KC_Y         , KC_K         , 
+                                                   LT(NUM,KC_ESC) , LT(SYM,KC_BSPC) , LT(NAV,KC_T),        LT(SYM,KC_ENT) , LT(NAV,KC_SPC) , LT(FUN,KC_DEL)    ), 
 
 /*
- * SYM Layer: Symbols
+ * Extra Layer: QWERTY
  *
- * ,-------------------------------------------.                     ,----------------------------------.
- * |  ` ~   |  !   |  @   |  {   |  }   |  |   |                     |      |  &   |      |      |      |        
- * |--------+------+------+------+------+------|                     |------+------+------+------+------|
- * |    ~   |  #   |  $   |  (   |  )   | ` ~  |                     |   +  |  -   |  /   |  *   |   %  |        
- * |--------+------+------+------+------+------.                     ,------+------+------+-------------|
- * |    |   |  %   |  ^   |  <   |  >   |  ~   |                     |      |   &  |  +=  |  <   |  >   |     
- * `----------------------+------+------+------+------.       ,------+------+------+------+------+------'
- *                               |      |      |      |       |      |      |      |            
- *                               |      |      |      |       |      |      |      |            
- *                               `--------------------'       `--------------------'
+ * ,----------------------------------.                              ,----------------------------------.
+ * |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |   A  |   S  |   D  |   F  |   G  |                              |   H  |   J  |   K  |   L  |   '  | 
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |   Z  |   X  |   C  |   V  |   B  |                              |   N  |   M  |   ,  |   .  | / BTN|
+ * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
+ *                      | Esc  |Space | Tab  |                |Enter |Bckspc|Delete|
+ *                      |MEDIA | NAV  |MOUSE |                | SYM  | NUM  | FUN  |
+ *                      |      |      |      |                |      |      |      |
+ *                      `--------------------'                `--------------------'
  */
-[SYM] = LAYOUT
-    (KC_GRV , KC_EXLM , KC_AT   , KC_LCBR , KC_RCBR , KC_PIPE ,                                               KC_TRNS , KC_AMPR , KC_TRNS  , KC_TRNS  , KC_TRNS , KC_TRNS, 
-    KC_TILD , KC_HASH , KC_DLR  , KC_LPRN , KC_RPRN , KC_GRV  ,                                               KC_PLUS , KC_MINS , KC_SLSH  , KC_ASTR  , KC_PERC , KC_TRNS, 
-    KC_PIPE , KC_PERC , KC_CIRC , KC_LT   , KC_GT   , KC_TILD , KC_TRNS , KC_TRNS ,        KC_TRNS , KC_TRNS, KC_AMPR , KC_EQL  , KC_LT    , KC_GT    , KC_SLSH , KC_TRNS, 
-                                  KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,        KC_TRNS , KC_TRNS, KC_TRNS , KC_TRNS , KC_TRNS) ,
+
+
 
 /*
- * NAV Layer: Media, navigation
+ * Tap Layer:
  *
- * ,-------------------------------------------.                       ,-------------------------------------------.
- * |        |      |      |      |      |      |                       |      | Home |   ↑  |PgeUp | VolUp| Delete |
- * |--------+------+------+------+------+------|                       |------+------+------+------+------+--------|
- * |        | Ctrl |  Alt | Gui  | Shift|      |                       |      |  ←   |   ↓  |   →  | VolDn| Insert |
- * |--------+------+------+------+------+------+------.         ,------+------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |         |      |      | End  | Play |PgeDwn|VolMut| PrtSc  |
- * `----------------------+------+------+------+------|         |------+------+------+------+------+---------------'
- *                               |      |      |      |         |      |      |      |            
- *                               |      |      |      |         |      |      |      |            
- *                               `--------------------'         `--------------------'
+ * ,----------------------------------.                              ,----------------------------------.
+ * |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |   A  |   S  |   D  |   F  |   G  |                              |   H  |   J  |   K  |   L  |   '  | 
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |   Z  |   X  |   C  |   V  |   B  |                              |   N  |   M  |   ,  |   .  | / BTN|
+ * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
+ *                      | Esc  |Space | Tab  |                |Enter |Bckspc|Delete|
+ *                      |      |      |      |                |      |      |      |
+ *                      |      |      |      |                |      |      |      |
+ *                      `--------------------'                `--------------------'
+ */
+
+
+
+/*
+ * Button Layer:
+ *
+ * ,----------------------------------.                              ,----------------------------------.
+ * | Undo | Cut  | Copy |Paste |Again |                              |Again |Paste | Copy | Cut  | Undo |
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * | Ctrl |  Alt | Gui  | Shift| Meta |                              |      |Shift | Gui  | Alt  |Ctrl  | 
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * | Undo | Cut  | Copy |Paste |Again |                              |Again |Paste | Copy | Cut  | Undo |
+ * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
+ *                      |Middle| Left |Right |                |Right | Left |Middle|
+ *                      |Button|Button|Button|                |Button|Button|Button|
+ *                      |      |      |      |                |      |      |      |
+ *                      `--------------------'                `--------------------'
+ */
+
+
+
+/*
+ * NAV Layer: Navigation
+ *
+ * ,----------------------------------.                              ,----------------------------------.
+ * | Boot |To Tap|ToXtra|ToBase|      |                              |Again |Paste | Copy | Cut  | Undo |
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * | Ctrl |  Alt | Gui  | Shift| Meta |                              |Cplkwd| Left | Down |  Up  |Right | 
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |      |AltGr |To Num|To Nav|      |                              |Insert| Home |Pg Up |Pg Dn | End  |
+ * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
+ *                      |      |      |      |                |Enter |Bckspc|Delete|
+ *                      |      |      |      |                |      |      |      |
+ *                      |      |      |      |                |      |      |      |
+ *                      `--------------------'                `--------------------'                            
  */
 [NAV] = LAYOUT
     (KC_TRNS, KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,                                                     KC_TRNS , KC_HOME , KC_UP   , KC_PGUP , KC_VOLU , KC_DEL, 
@@ -100,18 +152,100 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                   KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,             KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS),
 
 /*
+ * Mouse Layer:
+ *
+ * ,----------------------------------.                              ,----------------------------------.
+ * | Boot |To Tap|ToXtra|ToBase|      |                              |Again |Paste | Copy | Cut  | Undo |
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * | Ctrl |  Alt | Gui  | Shift| Meta |                              |      |MsLeft|MsDown |MsUp |MsRght| 
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |      |AltGr |To Sym|ToMous|      |                              |      |      |      |      |      |
+ * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
+ *                      |      |      |      |                |Right | Left |Middle|
+ *                      |      |      |      |                |Button|Button|Button|
+ *                      |      |      |      |                |      |      |      |
+ *                      `--------------------'                `--------------------'
+ */
+
+
+
+/*
+ * Media Layer
+ *
+ *,----------------------------------.                              ,----------------------------------.
+ * | Boot |To Tap|ToXtra|ToBase|      |                              |      |      |      |      |      |
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * | Ctrl |  Alt | Gui  | Shift| Meta |                              |      |      |      |      |      | 
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |      |      |To Fun|ToMdia|      |                              |      |      |      |      |      |
+ * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
+ *                      |      |      |      |                | Stop | Play | Mute |
+ *                      |      |      |      |                |      |Pause |      |
+ *                      |      |      |      |                |      |      |      |
+ *                      `--------------------'                `--------------------'
+ */
+
+
+
+/*
+ * Number Layer: Numbers, some symbols
+ *
+ * ,----------------------------------.                              ,----------------------------------.
+ * |      |  7 & | 8 *  | 9 (  |  }   |                              |      |ToBase|ToXtra|To Tap| Boot |
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |      |  4 $ | 5 %  | 6 ^  | + =  |                              |      |Shift | Gui  | Alt  |Ctrl  | 
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |      |  1 ! | 2 @  | 3 #  |      |                              |      |To Num|To Nav|AltGr |      |
+ * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
+ *                      |      |      |      |                |      |      |      |
+ *                      |      |  0 ) |      |                |      |      |      |
+ *                      |      |      |      |                |      |      |      |
+ *                      `--------------------'                `--------------------'
+ */
+[NUM] = LAYOUT
+    (KC_GRV , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,                                                           KC_PSLS , KC_7   , KC_8    , KC_9 , KC_MINS , KC_TRNS, 
+    KC_TILD , KC_HASH , KC_DLR  , KC_LPRN , KC_RPRN , KC_TRNS ,                                                           KC_PAST , KC_4   , KC_5    , KC_6 , KC_PLUS , KC_TRNS, 
+    KC_PIPE , KC_TRNS , KC_TRNS , KC_LT   , KC_GT   , KC_TILD , KC_TRNS , KC_TRNS ,                   KC_TRNS , KC_TRNS , KC_0    , KC_1   , KC_2    , KC_3 , KC_EQL  , KC_TRNS, 
+                                  KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,                   KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS),
+
+
+/*
+ * SYM Layer: Symbols, layer keys, HRMs
+ *
+ * ,----------------------------------.                              ,----------------------------------.
+ * |  {   |  &   |   *  |   (  |   }  |                              |      |ToBase|ToXtra|To Tap| Boot |
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |  ; : |  $   |   %  |   ^  |  +   |                              | Meta |Shift | Gui  | Alt  |Ctrl  | 
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |  ~ ` |  !   |   @  |  #   |  |   |                              |      |To Sym|ToMous|AltGr |      |
+ * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
+ *                      |      |      |      |                |      |      |      |
+ *                      |  (   |   )  |  _   |                |      |      |      |
+ *                      |      |      |      |                |      |      |      |
+ *                      `--------------------'                `--------------------'
+ */
+[SYM] = LAYOUT
+    (KC_GRV , KC_EXLM , KC_AT   , KC_LCBR , KC_RCBR , KC_PIPE ,                                               KC_TRNS , KC_AMPR , KC_TRNS  , KC_TRNS  , KC_TRNS , KC_TRNS, 
+    KC_TILD , KC_HASH , KC_DLR  , KC_LPRN , KC_RPRN , KC_GRV  ,                                               KC_PLUS , KC_MINS , KC_SLSH  , KC_ASTR  , KC_PERC , KC_TRNS, 
+    KC_PIPE , KC_PERC , KC_CIRC , KC_LT   , KC_GT   , KC_TILD , KC_TRNS , KC_TRNS ,        KC_TRNS , KC_TRNS, KC_AMPR , KC_EQL  , KC_LT    , KC_GT    , KC_SLSH , KC_TRNS, 
+                                  KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,        KC_TRNS , KC_TRNS, KC_TRNS , KC_TRNS , KC_TRNS) ,
+
+
+
+/*
  * Function Layer: Function keys, RGB
  *
- * ,-------------------------------------------.                              ,-------------------------------------------.
- * |HANDSDWN|  F9  | F10  | F11  | F12  |      |                              |      |Paste | Copy | Cut  | Undo |HANDSDWN|
- * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * | QWERTY |  F5  |  F6  |  F7  |  F8  |      |                              | RGB  | Sat+ | Hue+ |Bright| RGB+ | QWERTY |
- * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  F1  |  F2  |  F3  |  F4  |      |      |      |  |      |      |      | Sat- | Hue- | Dim  | RGB- |        |
- * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        `----------------------------------'  `----------------------------------'
+ * ,----------------------------------.                              ,----------------------------------.
+ * |  F12 |  F1  |  F1  |  F1  |PrtScn|                              |      |ToBase|ToXtra|To Tap| Boot |
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |  F11 |  F1  |  F1  |  F1  |Sclock|                              | Meta |Shift | Gui  | Alt  |Ctrl  | 
+ * |------+------+------+------+------|                              |------+------+------+------+------|
+ * |  F10 |  F1  |  F2  |  F1  |PseBrk|                              |      |To Num|To Nav|AltGr |      |
+ * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
+ *                      | App  |Space | Tab  |                |      |      |      |
+ *                      |      |      |      |                |      |      |      |
+ *                      |      |      |      |                |      |      |      |
+ *                      `--------------------'                `--------------------'
  */
 [FUN] = LAYOUT
     (DF(HANDS_DOWN), KC_F9, KC_F10  , KC_F11  , KC_F12  , KC_TRNS ,                                                      KC_TRNS , KC_PSTE , KC_COPY , KC_CUT  , KC_UNDO  , DF(HANDS_DOWN), 
@@ -119,26 +253,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS        , KC_F1, KC_F2   , KC_F3   , KC_F4   , KC_TRNS , KC_TRNS , KC_TRNS,               KC_TRNS , KC_TRNS , KC_TRNS , RGB_SAD , RGB_HUD , RGB_VAD , RGB_RMOD , KC_TRNS, 
                                       KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS,               KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS),
 
-/*
- * Adjust Layer: Numbers, some symbols
- *
- * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |      |      |      |      |      |                              |   /  |   7  |   8  |   9  |   -  |        |
- * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |   ~    |   #  |   $  |   (  |  )   |      |                              |   *  |   4  |   5  |   6  |   +  |        |
- * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |    |   |      |      |  <   |  >   |  ~   |      |      |  |      |      |   0  |   1  |   2  |   3  |   =  |        |
- * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        `----------------------------------'  `----------------------------------'
- */
-[ADJUST] = LAYOUT
-    (KC_GRV , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,                                                           KC_PSLS , KC_7   , KC_8    , KC_9 , KC_MINS , KC_TRNS, 
-    KC_TILD , KC_HASH , KC_DLR  , KC_LPRN , KC_RPRN , KC_TRNS ,                                                           KC_PAST , KC_4   , KC_5    , KC_6 , KC_PLUS , KC_TRNS, 
-    KC_PIPE , KC_TRNS , KC_TRNS , KC_LT   , KC_GT   , KC_TILD , KC_TRNS , KC_TRNS ,                   KC_TRNS , KC_TRNS , KC_0    , KC_1   , KC_2    , KC_3 , KC_EQL  , KC_TRNS, 
-                                  KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,                   KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS),
+
 };
+
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_180; }

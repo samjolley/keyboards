@@ -20,15 +20,16 @@
 #include "g/keymap_combo.h"
 
 enum layers {
-    HANDS_DOWN = 0,  // Default alpha layer
+    BASE = 0,        // Default alpha layer - Hands Down Gold (Neu-tx)
     EXTRA,           // QWERTY
-    SYM,             // Symbols
-    NAV,             // Navigation
-    FUN,             // F keys + keyboard settings
-    NUM,             // Numbers
-    MEDIA,           // Play, pause, etc.
-    MOUSE,           // Mouse keys
+    TAP,             // 
     BUTTON,          // Shortcuts for copy/paste, alt/control/GUI/shift, etc.
+    NAV,             // Navigation
+    MOUSE,           // Mouse keys
+    MEDIA,           // Play, pause, etc.
+    NUM,             // Numbers
+    SYM,             // Symbols
+    FUN,             // Function keys + keyboard settings
     EMOJI,           // Emojis, like ¯\_(ツ)_/¯
 };
 
@@ -55,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 /*
- * Base Layer: HANDS DOWN GOLD (Neu-tx)
+ * Base Layer: Hands Down Gold (Neu-tx)
  *
  * ,----------------------------------.                              ,----------------------------------.
  * |   J  |   G  |   M  |   P  |   V  |                              |  ; : |  , < |  . > |   !  | / ?  |
@@ -70,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                      `--------------------'                `--------------------'
  */
 
-[HANDS_DOWN] = LAYOUT
+[BASE] = LAYOUT
     (KC_J        , KC_G         , KC_M           , KC_P           , KC_V            ,                                       KC_SCLN        , KC_COMM           , KC_DOT       , KC_EXLM      , KC_SLSH      , 
     LCTL_T(KC_R) , LALT_T(KC_S) , LGUI_T(KC_N)   , LSFT_T(KC_D)   , KC_B            ,                                       KC_AMPR        , LSFT_T(KC_A)      , LGUI_T(KC_E) , LALT_T(KC_I) , LCTL_T(KC_H) , 
     KC_X         , KC_F         , KC_L           , KC_C           , KC_W            ,                                       KC_MINS        , KC_U              , KC_O         , KC_Y         , KC_K         , 
@@ -248,7 +249,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                      `--------------------'                `--------------------'
  */
 [FUN] = LAYOUT
-    (DF(HANDS_DOWN), KC_F9, KC_F10  , KC_F11  , KC_F12  , KC_TRNS ,                                                      KC_TRNS , KC_PSTE , KC_COPY , KC_CUT  , KC_UNDO  , DF(HANDS_DOWN), 
+    (DF(BASE), KC_F9, KC_F10  , KC_F11  , KC_F12  , KC_TRNS ,                                                      KC_TRNS , KC_PSTE , KC_COPY , KC_CUT  , KC_UNDO  , DF(BASE), 
     DF(QWERTY)     , KC_F5, KC_F6   , KC_F7   , KC_F8   , KC_TRNS ,                                                      RGB_TOG , RGB_SAI , RGB_HUI , RGB_VAI , RGB_MOD  , DF(QWERTY), 
     KC_TRNS        , KC_F1, KC_F2   , KC_F3   , KC_F4   , KC_TRNS , KC_TRNS , KC_TRNS,               KC_TRNS , KC_TRNS , KC_TRNS , RGB_SAD , RGB_HUD , RGB_VAD , RGB_RMOD , KC_TRNS, 
                                       KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS,               KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS),
@@ -276,7 +277,7 @@ bool oled_task_user(void) {
         // Host Keyboard Layer Status
         oled_write_P(PSTR("Layer: "), false);
         switch (get_highest_layer(layer_state|default_layer_state)) {
-            case HANDS_DOWN:
+            case BASE:
                 oled_write_P(PSTR("HandsDown Gold\n"), false);
                 break;
             case QWERTY:

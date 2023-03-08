@@ -24,7 +24,7 @@
 enum layers {
     BASE = 0,        // Default alpha layer - Hands Down Gold (Neu-tx)
     EXTRA,           // QWERTY
-    TAP,             // 
+    TAP,             // Only normal keycodes, must reset to get back to normal mode
     BUTTON,          // Shortcuts for copy/paste, alt/control/GUI/shift, etc.
     NAV,             // Navigation
     MOUSE,           // Mouse keys
@@ -32,7 +32,6 @@ enum layers {
     NUM,             // Numbers
     SYM,             // Symbols
     FUN,             // Function keys + keyboard settings
-    EMOJI,           // Emojis, like ¯\_(ツ)_/¯
 };
 
 
@@ -67,16 +66,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------|                              |------+------+------+------+------|
  * |   X  |   F  |   L  |   C  |   W  |                              | - _  |   U  |   O  |   Y  |   K  |
  * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
- *                      |PGUPDN|Bckspc|  T   |                |Enter |Space |Vol   |
- *                      |Esc   |SYM   | NAV  |                |SYM   |NAV   |Delete|
- *                      |NUM   |      |      |                |      |      |FUN   |
+ *                      |PGUPDN|Space |  T   |                |Enter |Bspace|Vol   |
+ *                      |Esc   |NAV   |MOUSE |                |SYM   |NUM   |Delete|
+ *                      |MEDIA |      |      |                |      |      |FUN   |
  *                      `--------------------'                `--------------------'
  */
 [BASE] = LAYOUT
-    (KC_J        , KC_G         , KC_M           , KC_P           , KC_V            ,                                       KC_SCLN        , KC_COMM           , KC_DOT       , KC_SLSH      , KC_BSLSH     , 
-    LCTL_T(KC_R) , LALT_T(KC_S) , LGUI_T(KC_N)   , LSFT_T(KC_D)   , KC_B            ,                                       KC_AMPR        , LSFT_T(KC_A)      , LGUI_T(KC_E) , LALT_T(KC_I) , LCTL_T(KC_H) , 
-    KC_X         , KC_F         , KC_L           , KC_C           , KC_W            ,                                       KC_MINS        , KC_U              , KC_O         , KC_Y         , KC_K         , 
-                                                   LT(NUM,KC_ESC) , LT(SYM,KC_BSPC) , LT(NAV,KC_T),        LT(SYM,KC_ENT) , LT(NAV,KC_SPC) , LT(FUN,KC_DEL)  ) , 
+    (KC_J        , KC_G         , KC_M           , KC_P             , KC_V           ,                                       KC_SCLN        , KC_COMM           , KC_DOT       , KC_SLSH      , KC_BSLSH     , 
+    LCTL_T(KC_R) , LALT_T(KC_S) , LGUI_T(KC_N)   , LSFT_T(KC_D)     , KC_B           ,                                       KC_AMPR        , LSFT_T(KC_A)      , LGUI_T(KC_E) , LALT_T(KC_I) , LCTL_T(KC_H) , 
+    KC_X         , KC_F         , KC_L           , KC_C             , KC_W           ,                                       KC_MINS        , KC_U              , KC_O         , KC_Y         , KC_K         , 
+                                                   LT(MEDIA,KC_ESC) , LT(NAV,KC_SPC) , LT(MOUSE,KC_T),      LT(SYM,KC_ENT) , LT(NUM,KC_BSPC), LT(FUN,KC_DEL)  ) , 
 
 /*
  * Extra Layer: QWERTY
@@ -217,22 +216,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Number Layer: Numbers, symbols on shift
  *
  * ,----------------------------------.                              ,----------------------------------.
- * |      |  7 & | 8 *  | 9 (  |  }   |                              |      |ToBase|ToXtra|To Tap| Boot |
+ * |   {  |  7 & | 8 *  | 9 (  |  }   |                              |      |ToBase|ToXtra|To Tap| Boot |
  * |------+------+------+------+------|                              |------+------+------+------+------|
- * |      |  4 $ | 5 %  | 6 ^  | + =  |                              |      |Shift | Gui  | Alt  |Ctrl  | 
+ * |  ; : |  4 $ | 5 %  | 6 ^  | + =  |                              |      |Shift | Gui  | Alt  |Ctrl  | 
  * |------+------+------+------+------|                              |------+------+------+------+------|
  * |      |  1 ! | 2 @  | 3 #  |      |                              |      |To Num|To Nav|AltGr |      |
  * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
  *                      |      |      |      |                |      |      |      |
- *                      |      |  0 ) |      |                |      |      |      |
+ *                      | . >  |  0 ) | - _  |                |      |      |      |
  *                      |      |      |      |                |      |      |      |
  *                      `--------------------'                `--------------------'
  */
 [NUM] = LAYOUT
-    (KC_TRNS, KC_7 , KC_8 , KC_9    , KC_RBRC ,                           KC_TRNS , TG(BASE)  , TG(EXTRA) , TG(TAP) , RESET   , 
-    KC_TRNS , KC_4 , KC_5 , KC_6    , KC_EQL  ,                           KC_TRNS , KC_LSFT   , KC_LGUI   , KC_LALT , KC_LCTL , 
-    KC_TRNS , KC_1 , KC_2 , KC_3    , KC_TRNS ,                           KC_TRNS , TG(NUM)   , TG(NAV)   , KC_RALT , KC_TRNS , 
-                            KC_TRNS , KC_0    , KC_TRNS,        KC_TRNS , KC_TRNS , KC_TRNS ) , 
+    (KC_LBRC, KC_7 , KC_8 , KC_9    , KC_RBRC ,                           KC_TRNS , TG(BASE)  , TG(EXTRA) , TG(TAP) , RESET   , 
+    KC_SCLN , KC_4 , KC_5 , KC_6    , KC_EQL  ,                           KC_TRNS , KC_LSFT   , KC_LGUI   , KC_LALT , KC_LCTL , 
+    KC_GRV  , KC_1 , KC_2 , KC_3    , KC_TRNS ,                           KC_TRNS , TG(NUM)   , TG(NAV)   , KC_RALT , KC_TRNS , 
+                            KC_DOT  , KC_0    , KC_MINS,        KC_TRNS , KC_TRNS , KC_TRNS ) , 
 
 
 /*
@@ -243,7 +242,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------|                              |------+------+------+------+------|
  * |  ; : |  $   |   %  |   ^  |  +   |                              |      |Shift | Gui  | Alt  |Ctrl  | 
  * |------+------+------+------+------|                              |------+------+------+------+------|
- * |  ~ ` |  !   |   @  |  #   |  |   |                              |      |To Sym|ToMous|AltGr |      |
+ * |  ~ ` |  !   |   @  |   #  |  |   |                              |      |To Sym|ToMous|AltGr |      |
  * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
  *                      |      |      |      |                |      |      |      |
  *                      |  (   |   )  |  _   |                |      |      |      |
@@ -279,23 +278,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_F10, KC_F1  , KC_F2  , KC_F3  , KC_PAUSE ,                             KC_TRNS  , TG(NUM)  , TG(NAV)   , KC_RALT , KC_TRNS ,   
                                KC_APP , KC_SPACE , KC_TAB ,          KC_TRNS , KC_TRNS  , KC_TRNS) ,
 
-/*
- * Emoji Layer
- *
- * ,----------------------------------.                              ,----------------------------------.
- * |      |      |      |      |      |                              |      |      |      |      |      |
- * |------+------+------+------+------|                              |------+------+------+------+------|
- * |      |      |      |      |      |                              |      |      |      |      |      | 
- * |------+------+------+------+------|                              |------+------+------+------+------|
- * |      |      |      |      |      |                              |      |      |      |      |      |
- * `------+------+------+------+------|------.                ,------|------+------+------+-------------'
- *                      |      |      |      |                |      |      |      |
- *                      |      |      |      |                |      |      |      |
- *                      |      |      |      |                |      |      |      |
- *                      `--------------------'                `--------------------'
- */
-
-
 };
 
 
@@ -313,7 +295,7 @@ bool oled_task_user(void) {
         // clang-format on
 
         oled_write_P(qmk_logo, false);
-        oled_write_P(PSTR("Kyria rev1.0\n\n"), false);
+        oled_write_P(PSTR("Rollow\n\n"), false);
 
         // Host Keyboard Layer Status
         oled_write_P(PSTR("Layer: "), false);
@@ -321,21 +303,33 @@ bool oled_task_user(void) {
             case BASE:
                 oled_write_P(PSTR("HandsDown Gold\n"), false);
                 break;
-            case QWERTY:
+            case EXTRA:
                 oled_write_P(PSTR("Qwerty\n"), false);
                 break; 
-            case SYM:
-                oled_write_P(PSTR("SYM\n"), false);
+            case TAP:
+                oled_write_P(PSTR("Tap\n"), false);
+                break;
+            case BUTTON:
+                oled_write_P(PSTR("Button\n"), false);
                 break;
             case NAV:
-                oled_write_P(PSTR("NAV\n"), false);
+                oled_write_P(PSTR("Navigation\n"), false);
+                break;
+            case MOUSE:
+                oled_write_P(PSTR("Mouse\n"), false);
+                break;
+            case MEDIA:
+                oled_write_P(PSTR("Media\n"), false);
+                break;
+            case NUM:
+                oled_write_P(PSTR("Number\n"), false);
+                break;
+            case SYM:
+                oled_write_P(PSTR("Symbols\n"), false);
                 break;
             case FUN:
                 oled_write_P(PSTR("Function\n"), false);
                 break;   
-            case ADJUST:
-                oled_write_P(PSTR("Adjust\n"), false);
-                break;
             default:
                 oled_write_P(PSTR("Undefined\n"), false);
         }
@@ -345,23 +339,8 @@ bool oled_task_user(void) {
         oled_write_P(led_usb_state.num_lock    ? PSTR("NUMLCK ") : PSTR("       "), false);
         oled_write_P(led_usb_state.caps_lock   ? PSTR("CAPLCK ") : PSTR("       "), false);
         oled_write_P(led_usb_state.scroll_lock ? PSTR("SCRLCK ") : PSTR("       "), false);
-    } else {
-        // clang-format off
-        static const char PROGMEM kyria_logo[] = {
-            0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,128,128,192,224,240,112,120, 56, 60, 28, 30, 14, 14, 14,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7, 14, 14, 14, 30, 28, 60, 56,120,112,240,224,192,128,128,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-            0,  0,  0,  0,  0,  0,  0,192,224,240,124, 62, 31, 15,  7,  3,  1,128,192,224,240,120, 56, 60, 28, 30, 14, 14,  7,  7,135,231,127, 31,255,255, 31,127,231,135,  7,  7, 14, 14, 30, 28, 60, 56,120,240,224,192,128,  1,  3,  7, 15, 31, 62,124,240,224,192,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-            0,  0,  0,  0,240,252,255, 31,  7,  1,  0,  0,192,240,252,254,255,247,243,177,176, 48, 48, 48, 48, 48, 48, 48,120,254,135,  1,  0,  0,255,255,  0,  0,  1,135,254,120, 48, 48, 48, 48, 48, 48, 48,176,177,243,247,255,254,252,240,192,  0,  0,  1,  7, 31,255,252,240,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-            0,  0,  0,255,255,255,  0,  0,  0,  0,  0,254,255,255,  1,  1,  7, 30,120,225,129,131,131,134,134,140,140,152,152,177,183,254,248,224,255,255,224,248,254,183,177,152,152,140,140,134,134,131,131,129,225,120, 30,  7,  1,  1,255,255,254,  0,  0,  0,  0,  0,255,255,255,  0,  0,  0,  0,255,255,  0,  0,192,192, 48, 48,  0,  0,240,240,  0,  0,  0,  0,  0,  0,240,240,  0,  0,240,240,192,192, 48, 48, 48, 48,192,192,  0,  0, 48, 48,243,243,  0,  0,  0,  0,  0,  0, 48, 48, 48, 48, 48, 48,192,192,  0,  0,  0,  0,  0,
-            0,  0,  0,255,255,255,  0,  0,  0,  0,  0,127,255,255,128,128,224,120, 30,135,129,193,193, 97, 97, 49, 49, 25, 25,141,237,127, 31,  7,255,255,  7, 31,127,237,141, 25, 25, 49, 49, 97, 97,193,193,129,135, 30,120,224,128,128,255,255,127,  0,  0,  0,  0,  0,255,255,255,  0,  0,  0,  0, 63, 63,  3,  3, 12, 12, 48, 48,  0,  0,  0,  0, 51, 51, 51, 51, 51, 51, 15, 15,  0,  0, 63, 63,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 48, 48, 63, 63, 48, 48,  0,  0, 12, 12, 51, 51, 51, 51, 51, 51, 63, 63,  0,  0,  0,  0,  0,
-            0,  0,  0,  0, 15, 63,255,248,224,128,  0,  0,  3, 15, 63,127,255,239,207,141, 13, 12, 12, 12, 12, 12, 12, 12, 30,127,225,128,  0,  0,255,255,  0,  0,128,225,127, 30, 12, 12, 12, 12, 12, 12, 12, 13,141,207,239,255,127, 63, 15,  3,  0,  0,128,224,248,255, 63, 15,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-            0,  0,  0,  0,  0,  0,  0,  3,  7, 15, 62,124,248,240,224,192,128,  1,  3,  7, 15, 30, 28, 60, 56,120,112,112,224,224,225,231,254,248,255,255,248,254,231,225,224,224,112,112,120, 56, 60, 28, 30, 15,  7,  3,  1,128,192,224,240,248,124, 62, 15,  7,  3,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-            0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  3,  7, 15, 14, 30, 28, 60, 56,120,112,112,112,224,224,224,224,224,224,224,224,224,224,224,224,224,224,224,224,112,112,112,120, 56, 60, 28, 30, 14, 15,  7,  3,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
-        };
-        // clang-format on
-        oled_write_raw_P(kyria_logo, sizeof(kyria_logo));
-    }
-    return false;
 }
+
 #endif
 
 #ifdef ENCODER_ENABLE
